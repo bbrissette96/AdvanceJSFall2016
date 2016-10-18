@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> arrays </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>look at console log</div>
+        
+        <script type="text/javascript">
+            
+            var myvar = [1,2,3,4,5];
+            console.log(myvar[3]);
+            myvar['hahahah'] = 'hello';
+            
+            /* 
+            myvar[5] = 'hi';
+            myvar.push('hi');
+            myvar[myvar.length] = 'hi';
+            */
+            var myarray = myvar.splice();
+           
+           /* console.log(myvar.shift()); */
+           console.log(myarray.splice(2,2));
+           console.log(myarray.splice(1,1));
+
+           /* console.log(myvar.pop()); */
+           console.log(myvar);
+           
+           
+           for (var item in myvar)
+           {
+               console.log('index =', item , 'value =',myvar[item]);
+           }
+           
+           for (var i = 0; i < myvar.length; i++)
+           {
+               console.log(myvar[i]);
+           }
+           //myvar.forEach(function )
+          
+        </script>
+    </body>
+</html>
