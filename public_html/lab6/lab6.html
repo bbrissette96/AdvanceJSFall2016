@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>PRESS BUTTON TO ADD BOXES</div></br>
+        <button class="add">Add Box</button>
+        <script>
+
+            var colors = ['red', 'blue', 'green', 'black'];
+
+            document.querySelector('button.add').addEventListener('click', function () {
+                new Block();
+            });
+
+            function Block() {
+                this.create();
+            }
+
+            Block.prototype.create = function () {
+                //this.top = '?px';
+                //this.left = '?px';
+                //this.transform = 'rotate(?deg)';
+                //this.opacity = '?';
+                //this.backgroundColor = 'black';
+                this.elem = document.createElement('div');
+
+                this.elem.style.width = '50px';
+                this.elem.style.height = '50px';
+                this.elem.style.backgroundColor = 'black';
+                this.elem.addEventListener('click', this.getRandomColor.bind(this));
+                document.body.appendChild(this.elem);
+
+                return this;
+            }
+
+            Block.prototype.getRandomColor = function () {
+                var index = Math.floor(Math.random() * (colors.length));
+                this.elem.style.backgroundColor = colors[index].toString();
+
+            }
+
+        </script>
+
+    </body>
+</html>
