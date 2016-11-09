@@ -22,20 +22,20 @@ and open the template in the editor.
             });
 
             function Block() {
+                this.randomX = 'Math.random(50, 500)';
+                this.randomY = 'Math.random(50, 500)';
                 this.create();
             }
 
             Block.prototype.create = function () {
-                //this.top = '?px';
-                //this.left = '?px';
-                //this.transform = 'rotate(?deg)';
-                //this.opacity = '?';
-                //this.backgroundColor = 'black';
-                this.elem = document.createElement('div');
 
+                this.elem = document.createElement('div');
+                this.elem.style.position = 'absolute';
+                this.elem.style.top = this.getRandomNumber(50, 500) + 'px';
+                this.elem.style.left = this.getRandomNumber(50, 500) + 'px';
                 this.elem.style.width = '50px';
                 this.elem.style.height = '50px';
-                this.elem.style.backgroundColor = 'black';
+                this.elem.style.backgroundColor = this.getRandomColor();
                 this.elem.addEventListener('click', this.getRandomColor.bind(this));
                 document.body.appendChild(this.elem);
 
@@ -48,6 +48,14 @@ and open the template in the editor.
 
             }
 
+            Block.prototype.getRandomNumber = function (min, max) {
+                var randomNumber = Math.random() * (max - min) + min;
+                return randomNumber;
+            }
+
+            Block.prototype.move = function () {
+                this.elem.style.top = randomX;
+            }
         </script>
 
     </body>
