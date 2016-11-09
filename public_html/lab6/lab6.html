@@ -1,42 +1,44 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Lab6</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>PRESS BUTTON TO ADD BOXES</div></br>
+        <div>PRESS BUTTON TO ADD BOXES</div><br/>
         <button class="add">Add Box</button>
         <script>
 
-            var colors = ['red', 'blue', 'green', 'black'];
+            var colors = ['red', 'blue', 'green'];
 
             document.querySelector('button.add').addEventListener('click', function () {
                 new Block();
             });
 
             function Block() {
-                this.randomX = 'Math.random(50, 500)';
-                this.randomY = 'Math.random(50, 500)';
+                this.top = this.getRandomNumber(50, 500);
+                this.left = this.getRandomNumber(50, 500);
+                this.transform = this.getRandomNumber(0, 360);
+                this.opacity = this.getRandomNumber(0, 1);
+
                 this.create();
+                this.timer = setInterval(this.move.bind(this), 100);
             }
 
             Block.prototype.create = function () {
 
                 this.elem = document.createElement('div');
                 this.elem.style.position = 'absolute';
-                this.elem.style.top = this.getRandomNumber(50, 500) + 'px';
-                this.elem.style.left = this.getRandomNumber(50, 500) + 'px';
+                this.elem.style.top = this.top + 'px';
+                this.elem.style.left = this.left + 'px';
+                this.elem.style.opacity = this.opacity;
+                this.elem.style.transform = 'rotate(' + this.transform + 'deg)';
                 this.elem.style.width = '50px';
                 this.elem.style.height = '50px';
                 this.elem.style.backgroundColor = this.getRandomColor();
-                this.elem.addEventListener('click', this.getRandomColor.bind(this));
+                //this.elem.addEventListener('click', this.getRandomColor.bind(this));
+                this.elem.addEventListener('click', this.remove.bind(this));
                 document.body.appendChild(this.elem);
 
                 return this;
@@ -53,8 +55,20 @@ and open the template in the editor.
                 return randomNumber;
             }
 
+            Block.prototype.remove = function () {
+                document.body.removeChild(this.elem);
+                return this;
+            }
             Block.prototype.move = function () {
-                this.elem.style.top = randomX;
+                this.transform = this.getRandomNumber(0, 360);
+                this.opacity = this.getRandomNumber(0, 1);
+                this.elem.style.transform = 'rotate(' + this.transform + 'deg)';
+                this.elem.style.opacity = this.opacity;
+                this.top = this.getRandomNumber(-5, 5) + this.top;
+                this.left = this.getRandomNumber(-5, 5) + this.left;
+                this.elem.style.top = this.top + 'px';
+                this.elem.style.left = this.left + 'px';
+
             }
         </script>
 
