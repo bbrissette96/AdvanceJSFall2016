@@ -47,7 +47,7 @@
             console.log('draw');
             var play = document.querySelector('#play');
 
-            play.addEventListener('click', gameMaster);
+            play.addEventListener('click', game);
            
 
             function drawDiagLine() {
@@ -66,7 +66,7 @@
                 window.ctx.fillText(color + "wins", (window.can.width / 2) , window.can.height / 2); 
             }
             
-            function gameMaster() { 
+            function game() { 
                 play.style.display = 'none';
                 if (window.xaxisRed + window.width < end && window.xaxisBlue + window.width < end)
                 {
@@ -76,7 +76,7 @@
                 window.moveRedRectX();
                 window.moveBlueRectX();
                 window.drawDiagLine();
-                setTimeout(window.gameMaster, 10);
+                setTimeout(window.game, 10);
             }
             else 
             {
