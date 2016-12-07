@@ -66,14 +66,19 @@
                 <label for="notagree"> <input type="radio" id="notagree" name="agreeForm" value="notagree" disabled="disabled" />  I <strong>do not agree</strong> to the terms and conditions of the document</label>
 
                 <br /><br />
-                <input type="submit" id="submitAgreement" value="Continue" />
+                <input type="submit" id="submitAgreement" value="Continue"/>
+
             </div>
         </form>
-
+        
+        <div id="postData">
+            
+        </div>
+        
         <script type="text/javascript">
             var objDiv = document.querySelector('div.scrollBox');
             objDiv.addEventListener('scroll', checkPosition);
-            
+
             function checkPosition() {
                 console.clear();
                 console.log(objDiv.scrollTop);
@@ -85,7 +90,7 @@
                     notagree.disabled = false;
                 }
             }
-            
+
             var nameBox = document.querySelector('#fullname');
             var emailBox = document.querySelector('#email');
             var phoneBox = document.querySelector('#phone');
@@ -96,9 +101,9 @@
 
             mainform.addEventListener('submit', validateForm);
             function validateForm(e) {
-                
+
                 var isValid = true;
-                
+
                 e.preventDefault();
                 var lblName = document.querySelector('#content > fieldset > label:nth-child(2)');
                 var lblEmail = document.querySelector('#content > fieldset > label:nth-child(5)');
@@ -106,10 +111,10 @@
                 var lblDescription = document.querySelector('#content > fieldset > label:nth-child(11)');
                 var lblAgree = document.querySelector('#section2 > label:nth-child(3)');
                 var lblNotAgree = document.querySelector('#section2 > label:nth-child(5)');
-                
+
                 var radioAgree = document.querySelector('#agree');
                 var radioNotAgree = document.querySelector('#notagree');
-                
+
                 if (nameBox.value === '') {
                     lblName.classList.add('error');
                     isValid = false;
@@ -147,7 +152,7 @@
                     lblAgree.classList.remove('error');
                     lblNotAgree.classList.remove('error');
                 }
-                
+
                 if (isValid === true) {
                     var html = '';
                     html += '<p> Name: ' + nameBox.value + '<p>' +
@@ -161,14 +166,22 @@
                         html += '<p> Agree:' + lblNotAgree.innerText + '<p>';
                     }
 
-                    newDiv.innerHTML += html;
+
+
+                    //newDiv.innerHTML += html;
                     mainform.classList.remove('show');
                     mainform.classList.add('hide');
+
+                    var postData = document.querySelector('#postData');
+                    postData.innerHTML = html; // use .innerHtml to manipulate data in a div
+
+
                 }
             }
+
+
+
         </script>
-
-
-
+        
     </body>
 </html>
